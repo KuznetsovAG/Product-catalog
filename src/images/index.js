@@ -1,0 +1,9 @@
+export { default as brand1 } from "./1.png";
+export { default as brand2 } from "./2.png";
+export { default as brand3 } from "./3.png";
+export { default as brand4 } from "./4.png";
+export { default as brand5 } from "./5.png";
+export { default as brand6 } from "./6.png";
+export { default as brand7 } from "./7.png";
+export { default as brand8 } from "./8.png";
+export { default as brand9 } from "./9.png";

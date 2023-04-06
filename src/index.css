@@ -1,0 +1,107 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.brands {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+  
+}
+
+.brands__apply {
+  padding: 10px 15px;
+  border-radius: 15px;
+  font-weight: 700;
+  color: aliceblue;
+  background-color: rgb(103, 189, 160);
+}
+
+.brands__reset {
+  text-decoration: underline;
+  color: rgb(103, 189, 160);
+  text-align: center;
+}
+
+.brands__apply, .brands__input, .brands__reset:hover {
+  cursor: pointer;
+}
+
+.cards__product {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  
+  width: 100%;
+}
+
+.single__card {
+  width: 250px;
+  height: 450px;
+  text-align: center;
+  border-radius: 10px;
+  background-color: lightgrey;
+  margin-bottom: 20px;
+}
+
+.app__container {
+  display: flex;
+  padding: 20px 50px;
+  
+}
+
+.brands__form {
+  margin-bottom: 20px;
+}
+
+.brands__checkbox {
+  margin-bottom: 10px;
+}
+
+
+.card__img {
+  width: 200px;
+  height: 200px;
+}
+
+.basket__product {
+  text-align: right;
+}
+
+.button__basket {
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.pagination__numbers {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination__item {
+  margin-right: 10px;
+  background-color: rgb(214, 214, 214);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.pagination__link {
+  color: black;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+

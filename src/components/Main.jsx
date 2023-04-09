@@ -4,16 +4,24 @@ import { brands } from "../api/brands";
 import { products } from "../api/products";
 import { Link } from "react-router-dom";
 import Pagination from "./Pagination";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  filteredProductsCards,
+  resetProducts,
+  toogleChecked,
+} from "../reducers/productReducer";
 
 const Main = () => {
-  const [checked, setChecked] = useState(null);
-  const [productsCard, setProducts] = useState(products);
+  const [showBrands, setShowBrands] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(6);
-
+  const dispatch = useDispatch();
+  const { shoppingCarts, brandsProduct, productsItems } = useSelector(
+    (state) => state.productReducer
+  );
   const lastProductIndex = currentPage * productsPerPage;
   const firstProductIndex = lastProductIndex - productsPerPage;
-  const currentProduct = productsCard.slice(
+  const currentProduct = productsItems.slice(
     firstProductIndex,
     lastProductIndex
   );
@@ -21,44 +29,56 @@ const Main = () => {
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+  const handleShowBrands = () => {
+    setShowBrands((prevState) => !prevState);
+  };
 
   const productFiltration = () => {
-    setProducts(
-      productsCard.filter((currentProduct) => checked === currentProduct.brand)
-    );
+    dispatch(filteredProductsCards());
   };
 
   const handleReset = () => {
-    setProducts(products);
+    dispatch(resetProducts(products));
   };
 
-  console.log("productsCard :>> ", productsCard);
+  const handleChecked = (id) => {
+    dispatch(toogleChecked(id));
+  };
+
   return (
     <div className="app">
       <div className="basket__product">
         <Link to="/basket">
-          <h2>Корзина</h2>
+          <span className="basket__icon">
+            Корзина
+            {shoppingCarts.length > 0 ? `: ${shoppingCarts.length}` : ""}
+          </span>
         </Link>
       </div>
 
       <div className="app__container">
         <div className="brands">
-          <h1>Бренды</h1>
-          <div className="brands__form">
-            {brands.map((brand) => (
-              <form className="brands__checkbox">
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={checked === brand.id}
-                    onChange={() => setChecked(brand.id)}
-                    className="brands__input"
-                  />
-                  {brand.title}
-                </label>
-              </form>
-            ))}
+          <h1>Бренды </h1>
+          <div onClick={handleShowBrands} className="brands__visibility">
+            {showBrands ? <p>Скрыть</p> : <p>Показать</p>}
           </div>
+          {showBrands && (
+            <div className="brands__form">
+              {brandsProduct.map((brand) => (
+                <form className="brands__checkbox" key={brand.id}>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={brand.checked}
+                      onChange={() => handleChecked(brand.id)}
+                      className="brands__input"
+                    />
+                    {brand.title}
+                  </label>
+                </form>
+              ))}
+            </div>
+          )}
           <button className="brands__apply" onClick={productFiltration}>
             Применить
           </button>
@@ -70,7 +90,7 @@ const Main = () => {
       </div>
       <Pagination
         productsPerPage={productsPerPage}
-        totalProducts={productsCard.length}
+        totalProducts={productsItems.length}
         paginate={paginate}
       />
     </div>

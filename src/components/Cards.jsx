@@ -1,14 +1,12 @@
-import React, { useState } from "react";
-import Basket from "./Basket";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { addBasket } from "../reducers/productReducer";
 
 const Cards = ({ productsCard }) => {
-  const [shoppingCart, setShoppingCart] = useState([]);
-
+  const dispatch = useDispatch();
   const handleBasket = (product) => {
-    setShoppingCart([...shoppingCart, product]);
+    dispatch(addBasket(product));
   };
-
-  console.log("shoppingCart :>> ", shoppingCart);
 
   return (
     <div className="cards__product">
@@ -34,7 +32,6 @@ const Cards = ({ productsCard }) => {
       ) : (
         <h1>Товар данного бренда отсуствует</h1>
       )}
-      <Basket shoppingCart={shoppingCart} />
     </div>
   );
 };

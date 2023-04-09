@@ -1,20 +1,28 @@
 import React, { useState } from "react";
-
-const Counter = () => {
-  const [count, setCount] = useState(1);
-
-  const handleDecrement = () => {
+const Counter = ({ price, countId, currency }) => {
+  const [count, setCount] = useState(countId);
+  const [priceCard, setPriceCard] = useState(price);
+  const handleDecrementButton = () => {
     if (count <= 1) {
       return setCount(1);
     }
     setCount((prevState) => prevState - 1);
+    setPriceCard((prevState) => prevState - price);
+  };
+
+  const handleIncrementButton = () => {
+    setCount((prevState) => prevState + 1);
+    setPriceCard((prevState) => prevState + price);
   };
 
   return (
     <div>
-      <button onClick={handleDecrement}>-</button>
+      <button onClick={handleDecrementButton}>-</button>
       {count}
-      <button onClick={() => setCount((prevState) => prevState + 1)}>+</button>
+      <button onClick={handleIncrementButton}>+</button>
+      <p>
+        Стоимость: {Math.round(priceCard)} {currency}
+      </p>
     </div>
   );
 };

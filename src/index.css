@@ -28,6 +28,10 @@ code {
   background-color: rgb(103, 189, 160);
 }
 
+.brands__visibility {
+  display: none;
+}
+
 .brands__reset {
   text-decoration: underline;
   color: rgb(103, 189, 160);
@@ -55,10 +59,12 @@ code {
   margin-bottom: 20px;
 }
 
+.app {
+  padding: 20px 50px;
+}
+
 .app__container {
   display: flex;
-  padding: 20px 50px;
-  
 }
 
 .brands__form {
@@ -75,13 +81,65 @@ code {
   height: 200px;
 }
 
-.basket__product {
-  text-align: right;
+.basket__container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  /* border: 1px solid rgb(255, 0, 0); */
 }
 
-.button__basket {
+.basket__item {
+  text-align: center;
+  background-color: lightgrey;
+  margin-right: 10px;
+}
+
+.basket__product {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+
+.basket__icon {
+  font-size: 30px;
+  color: rgb(5, 5, 5);
+}
+
+.basket__subtotal {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(204, 204, 204);
+  padding: 5px 10px;
+
+}
+
+.button__basket, .button__back {
   padding: 10px 15px;
   border-radius: 5px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.button__delete {
+  background-color: #e70202;
+  font-weight: 700;
+  color: aliceblue;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-bottom: 20px;
+}
+
+.basket__checkout {
+  padding: 10px;
+  font-weight: 700;
+  background-color: rgb(103, 189, 160);
+  color: rgb(255, 255, 255);
+}
+
+.basket__input {
+  margin-bottom: 20px;
+  padding: 5px 0px;
 }
 
 .pagination__numbers {
@@ -105,3 +163,77 @@ code {
 }
 
 
+.modal {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0,0,0,0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+
+.modal.active {
+  opacity: 1;
+}
+
+
+.modal__content {
+  padding: 20px;
+  border-radius: 12px;
+  background-color: white;
+  width: 50vw;
+  height: 150px;
+} 
+
+.modal__close {
+  text-align: right;
+}
+
+.modal__title {
+  text-align: center;
+}
+
+
+@media (max-width: 930px) {
+  .basket__container {
+    display: flex;
+    flex-direction: column;
+   
+  }
+  .basket__item {
+    margin-bottom: 20px;
+    margin-right: 0px;
+  }
+}
+
+
+
+
+@media (max-width: 500px) {
+  .app__container {
+    display: flex;
+    flex-direction: column;
+  }
+  .brands {
+    width: 100%;
+  }
+  .cards__product {
+    display: flex;
+    justify-content: center;
+  }
+  .brands__visibility {
+    display: block;
+  }
+}
+
+@media (max-width: 350px) {
+  .app {
+    padding: 10px 20px;
+  }
+}

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { deleteBasketProduct } from "../reducers/productReducer";
 import Counter from "./Counter";
 import Modal from "./Modal";
+import { emptyShoppingCart } from "../reducers/productReducer";
 const Basket = () => {
   const [modalActive, setModalActive] = useState(false);
 
@@ -15,7 +16,12 @@ const Basket = () => {
   const removeCard = (id) => {
     dispatch(deleteBasketProduct(id));
   };
-
+  console.log("totalPrice :>> ", totalPrice);
+  const handleEmptyBasket = () => {
+    if (shoppingCarts.length === 0) {
+      dispatch(emptyShoppingCart());
+    }
+  };
   const handleCheckountProduct = async (product) => {
     const config = {
       headers: {
@@ -56,7 +62,7 @@ const Basket = () => {
                 currency={goods.regular_price.currency}
               />
               <button
-                onClick={() => removeCard(goods.id)}
+                onClick={() => removeCard(goods)}
                 className="button__delete"
               >
                 Удалить
@@ -68,7 +74,7 @@ const Basket = () => {
         )}
         {shoppingCarts.length > 0 && (
           <div className="basket__subtotal">
-            <h2>Общая сумма покупки: {Math.round(totalPrice)}</h2>
+            <h2>Общая сумма покупки: {Math.round(totalPrice)} USD</h2>
             <input
               type="text"
               placeholder="Введите ваше имя"
@@ -93,7 +99,9 @@ const Basket = () => {
         )}
       </div>
       <Link to="/">
-        <button className="button__back">Вернуться в каталог товаров</button>
+        <button className="button__back" onClick={handleEmptyBasket}>
+          Вернуться в каталог товаров
+        </button>
       </Link>
     </div>
   );

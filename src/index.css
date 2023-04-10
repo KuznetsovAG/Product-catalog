@@ -162,6 +162,9 @@ code {
   text-decoration: none;
 }
 
+.counter {
+  margin: 0px 20px;
+}
 
 .modal {
   height: 100vh;

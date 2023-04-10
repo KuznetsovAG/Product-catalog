@@ -44,23 +44,27 @@ const productReducer = createSlice({
       });
       if (currentCard === undefined) {
         state.shoppingCarts.push(action.payload);
+        state.totalPrice += action.payload.regular_price.value;
       }
-      state.totalPrice += action.payload.regular_price.value;
     },
     deleteBasketProduct: (state, action) => {
       state.shoppingCarts = state.shoppingCarts.filter(
-        (cart) => cart.id !== action.payload
+        (cart) => cart.id !== action.payload.id
       );
+      state.totalPrice -= action.payload.regular_price.value;
     },
     clearBasket: (state) => {
       state.shoppingCarts = [];
       state.totalPrice = 0;
     },
     handleIncrement: (state, action) => {
-      state.totalPrice = state.totalPrice + action.payload;
+      state.totalPrice += action.payload;
     },
     handleDecrement: (state, action) => {
-      state.totalPrice = state.totalPrice - action.payload;
+      state.totalPrice -= action.payload;
+    },
+    emptyShoppingCart: (state) => {
+      state.totalPrice = 0;
     },
     toogleChecked: (state, action) => {
       const toogleCard = state.brandsProduct.map((brand) => {
@@ -85,4 +89,5 @@ export const {
   clearBasket,
   addBrands,
   filteredProductsCards,
+  emptyShoppingCart,
 } = productReducer.actions;

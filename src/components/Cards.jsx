@@ -7,7 +7,6 @@ const Cards = ({ productsCard }) => {
   const handleBasket = (product) => {
     dispatch(addBasket(product));
   };
-
   return (
     <div className="cards__product">
       {productsCard.length > 0 ? (

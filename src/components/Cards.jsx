@@ -5,7 +5,9 @@ import { addBasket } from "../reducers/productReducer";
 const Cards = ({ productsCard }) => {
   const dispatch = useDispatch();
   const handleBasket = (product) => {
-    dispatch(addBasket(product));
+    const addCountProduct = { ...product };
+    addCountProduct.count++;
+    dispatch(addBasket(addCountProduct));
   };
   return (
     <div className="cards__product">

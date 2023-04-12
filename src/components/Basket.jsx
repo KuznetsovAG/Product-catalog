@@ -13,6 +13,7 @@ const Basket = () => {
     (state) => state.productReducer
   );
   const dispatch = useDispatch();
+
   const removeCard = (id) => {
     dispatch(deleteBasketProduct(id));
   };

@@ -22,7 +22,7 @@ export const products = [
     },
     image: brand1,
     brand: 9,
-    count: 1,
+    count: 0,
   },
   {
     type: "simple",
@@ -35,7 +35,7 @@ export const products = [
     },
     image: brand2,
     brand: 8,
-    count: 1,
+    count: 0,
   },
   {
     type: "simple",
@@ -48,7 +48,7 @@ export const products = [
     },
     image: brand3,
     brand: 2,
-    count: 1,
+    count: 0,
   },
   {
     type: "simple",
@@ -61,7 +61,7 @@ export const products = [
     },
     image: brand4,
     brand: 7,
-    count: 1,
+    count: 0,
   },
   {
     type: "simple",
@@ -74,7 +74,7 @@ export const products = [
     },
     image: brand5,
     brand: 3,
-    count: 1,
+    count: 0,
   },
   {
     type: "simple",
@@ -87,7 +87,7 @@ export const products = [
     },
     image: brand6,
     brand: 6,
-    count: 1,
+    count: 0,
   },
   {
     type: "simple",
@@ -100,7 +100,7 @@ export const products = [
     },
     image: brand7,
     brand: 5,
-    count: 1,
+    count: 0,
   },
   {
     type: "simple",
@@ -113,7 +113,7 @@ export const products = [
     },
     image: brand8,
     brand: 1,
-    count: 1,
+    count: 0,
   },
   {
     type: "simple",
@@ -126,6 +126,6 @@ export const products = [
     },
     image: brand9,
     brand: 2,
-    count: 1,
+    count: 0,
   },
 ];

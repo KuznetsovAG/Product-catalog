@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Cards from "./Cards";
-import { brands } from "../api/brands";
 import { products } from "../api/products";
 import { Link } from "react-router-dom";
 import Pagination from "./Pagination";

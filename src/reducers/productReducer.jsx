@@ -24,6 +24,10 @@ const productReducer = createSlice({
     },
     resetProducts: (state, action) => {
       state.productsItems = action.payload;
+      state.brandsProduct = state.brandsProduct.map((brand) => ({
+        ...brand,
+        checked: false,
+      }));
     },
     filteredProductsCards: (state) => {
       const chekedBrands = state.brandsProduct
@@ -51,6 +55,7 @@ const productReducer = createSlice({
       state.shoppingCarts = state.shoppingCarts.filter(
         (cart) => cart.id !== action.payload.id
       );
+      console.log("action.payload :>> ", action.payload);
       state.totalPrice -= action.payload.regular_price.value;
     },
     clearBasket: (state) => {

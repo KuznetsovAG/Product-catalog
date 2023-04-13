@@ -1,6 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Brand, Product, StateProduct } from "../types/Products";
 
-const initialState = {
+const initialState: StateProduct = {
   productsItems: [],
   filteredProductItems: [],
   checkedItem: false,
@@ -13,16 +14,16 @@ const productReducer = createSlice({
   name: "products",
   initialState,
   reducers: {
-    addBrands: (state, action) => {
+    addBrands: (state, action:PayloadAction<Brand[]>) => {
       state.brandsProduct = action.payload.map((brand) => ({
         ...brand,
         checked: false,
       }));
     },
-    addProducts: (state, action) => {
+    addProducts: (state, action: PayloadAction<Product[]>) => {
       state.productsItems = action.payload;
     },
-    resetProducts: (state, action) => {
+    resetProducts: (state, action: PayloadAction<Product[]>) => {
       state.productsItems = action.payload;
       state.brandsProduct = state.brandsProduct.map((brand) => ({
         ...brand,
@@ -34,7 +35,7 @@ const productReducer = createSlice({
         .filter((product) => product.checked === true)
         .map(({ id }) => id);
       if (!chekedBrands.length) {
-        return state.productsItems;
+        return state;
       }
 
       const filteredProducts = state.productsItems.filter((product) =>
@@ -42,7 +43,7 @@ const productReducer = createSlice({
       );
       state.productsItems = filteredProducts;
     },
-    addBasket: (state, action) => {
+    addBasket: (state, action: PayloadAction<Product>) => {
       const currentCard = state.shoppingCarts.find((card) => {
         return card.id === action.payload.id;
       });
@@ -51,7 +52,7 @@ const productReducer = createSlice({
         state.totalPrice += action.payload.regular_price.value;
       }
     },
-    deleteBasketProduct: (state, action) => {
+    deleteBasketProduct: (state, action: PayloadAction<Product>) => {
       state.shoppingCarts = state.shoppingCarts.filter(
         (cart) => cart.id !== action.payload.id
       );
@@ -62,16 +63,16 @@ const productReducer = createSlice({
       state.shoppingCarts = [];
       state.totalPrice = 0;
     },
-    handleIncrement: (state, action) => {
+    handleIncrement: (state, action: PayloadAction<number>) => {
       state.totalPrice += action.payload;
     },
-    handleDecrement: (state, action) => {
+    handleDecrement: (state, action: PayloadAction<number>) => {
       state.totalPrice -= action.payload;
     },
     emptyShoppingCart: (state) => {
       state.totalPrice = 0;
     },
-    toogleChecked: (state, action) => {
+    toogleChecked: (state, action: PayloadAction<number>) => {
       const toogleCard = state.brandsProduct.map((brand) => {
         if (brand.id === action.payload) {
           brand.checked = !brand.checked;

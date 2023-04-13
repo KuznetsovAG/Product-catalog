@@ -1,10 +1,17 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { FC } from "react";
+import { useAppDispacth } from "../hooks/hook";
 import { addBasket } from "../reducers/productReducer";
+import { Product } from "../types/Products";
 
-const Cards = ({ productsCard }) => {
-  const dispatch = useDispatch();
-  const handleBasket = (product) => {
+
+interface PropsCards {
+  productsCard: Product[]
+}
+
+
+const Cards: FC<PropsCards> = ({ productsCard }) => {
+  const dispatch = useAppDispacth();
+  const handleBasket = (product:Product) => {
     const addCountProduct = { ...product };
     addCountProduct.count++;
     dispatch(addBasket(addCountProduct));

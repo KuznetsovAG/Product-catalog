@@ -3,19 +3,19 @@ import Cards from "./Cards";
 import { products } from "../api/products";
 import { Link } from "react-router-dom";
 import Pagination from "./Pagination";
-import { useDispatch, useSelector } from "react-redux";
 import {
   filteredProductsCards,
   resetProducts,
   toogleChecked,
 } from "../reducers/productReducer";
+import { useAppDispacth, useAppSelector } from "../hooks/hook";
 
 const Main = () => {
   const [showBrands, setShowBrands] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(6);
-  const dispatch = useDispatch();
-  const { shoppingCarts, brandsProduct, productsItems } = useSelector(
+  const dispatch = useAppDispacth();
+  const { shoppingCarts, brandsProduct, productsItems } = useAppSelector(
     (state) => state.productReducer
   );
   const lastProductIndex = currentPage * productsPerPage;
@@ -25,7 +25,7 @@ const Main = () => {
     lastProductIndex
   );
 
-  const paginate = (pageNumber) => {
+  const paginate = (pageNumber:number) => {
     setCurrentPage(pageNumber);
   };
   const handleShowBrands = () => {
@@ -40,7 +40,7 @@ const Main = () => {
     dispatch(resetProducts(products));
   };
 
-  const handleChecked = (id) => {
+  const handleChecked = (id: number) => {
     dispatch(toogleChecked(id));
   };
 

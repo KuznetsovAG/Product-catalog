@@ -1,30 +1,31 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteBasketProduct } from "../reducers/productReducer";
 import Counter from "./Counter";
 import Modal from "./Modal";
 import { emptyShoppingCart } from "../reducers/productReducer";
+import { useAppDispacth, useAppSelector } from "../hooks/hook";
+import { Product } from "../types/Products";
 const Basket = () => {
   const [modalActive, setModalActive] = useState(false);
 
-  const { shoppingCarts, totalPrice } = useSelector(
+  const { shoppingCarts, totalPrice } = useAppSelector(
     (state) => state.productReducer
   );
-  const dispatch = useDispatch();
+  const dispatch = useAppDispacth();
 
-  const removeCard = (id) => {
+  const removeCard = (id:Product) => {
     dispatch(deleteBasketProduct(id));
   };
-  console.log("totalPrice :>> ", totalPrice);
+
   const handleEmptyBasket = () => {
     if (shoppingCarts.length === 0) {
       dispatch(emptyShoppingCart());
     }
   };
-  const handleCheckountProduct = async (product) => {
-    const config = {
+  const handleCheckountProduct = async (product:Product[]) => {
+    const config:any = {
       headers: {
         "Content-Length": JSON.stringify(product).length,
         "Content-Type": "text/plain",

@@ -1,9 +1,15 @@
-import React from "react";
+import React, { FC } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { clearBasket } from "../reducers/productReducer";
 
-const Modal = ({ active, setActive }) => {
+interface PropsModal {
+  active: boolean,
+  setActive: (product:boolean) => void
+}
+
+
+const Modal:FC<PropsModal> = ({ active, setActive }) => {
   const dispatch = useDispatch();
 
   const closeModal = () => {

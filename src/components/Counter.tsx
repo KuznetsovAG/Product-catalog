@@ -1,10 +1,17 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { FC, useState } from "react";
+import { useAppDispacth } from "../hooks/hook";
 import { handleDecrement, handleIncrement } from "../reducers/productReducer";
-const Counter = ({ price, countId, currency }) => {
+
+interface PropsCounter {
+  price: number,
+  countId: number,
+  currency:string
+}
+
+const Counter:FC<PropsCounter> = ({ price, countId, currency }) => {
   const [count, setCount] = useState(countId);
   const [priceCard, setPriceCard] = useState(price);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispacth();
   const handleDecrementButton = () => {
     if (count <= 1) {
       return setCount(1);
